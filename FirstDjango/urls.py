@@ -5,5 +5,6 @@ from MainApp import views
 urlpatterns = [
     path('', views.home),
     path('about/', views.about),
-    path('item/<int:id>/', views.products)
+    path('items/', views.items_list),
+    path('items/<int:item_id>/', views.item_info)
 ]
