@@ -19,7 +19,7 @@ def home(request):
             """
     return HttpResponse(text)
 
-def users(request):
+def about(request):
     text = """
             <strong>Имя</strong>: <i>Иван</i><br>
             <strong>Отчество</strong>: <i>Петрович</i><br>
@@ -31,6 +31,7 @@ def users(request):
     return HttpResponse(text)
 
 def products(request, id):
+
     text = """
             <strong>Имя</strong>: <i>Иван</i><br>
             <strong>Отчество</strong>: <i>Петрович</i><br>
