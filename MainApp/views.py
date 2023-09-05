@@ -5,17 +5,17 @@ from django.http import HttpResponse
 def home(request):
     text = """
             <h1>"Изучаем django"</h1>
-            <strong>Автор</strong>: <i>Быстрова Е.А.</i>
+            <strong>Автор</strong>: <i>Иванов И.И.</i>
             """
     return HttpResponse(text)
 
 def about(request):
     text = """
-            <strong>Имя</strong>: <i>Екатерина</i><br>
-            <strong>Отчество</strong>: <i>Алексеевна</i><br>
-            <strong>Фамилия</strong>: <i>Быстрова</i><br>
+            <strong>Имя</strong>: <i>Иван</i><br>
+            <strong>Отчество</strong>: <i>Иванович</i><br>
+            <strong>Фамилия</strong>: <i>Иванов</i><br>
             <strong>телефон</strong>: <i>8-923-600-01-02</i><br>
-            <strong>email</strong>: <i>katvartes@gmail.com</i>
+            <strong>email</strong>: <i>ivanovii@gmail.com</i>
             """
 
     return HttpResponse(text)
@@ -36,7 +36,7 @@ def items_list(request):
     response = "<h1>Список товаров:</h1>"
     response += "<ol>"
     for item in items:
-        response += f"<li><a href='{item['id']}/'>{item['name']}</a></li>"
+        response += f"<li><a href='/item/{item['id']}/'>{item['name']}</a></li>"
     response += "</ol>"
     
     return HttpResponse(response)
@@ -57,13 +57,13 @@ def item_info(request, item_id):
                     <h1>Информация о товаре с id={item_id}</h1>
                     <p>Название: {found_item['name']}</p>
                     <p>Количество: {found_item['quantity']}</p>
-                    <a href='../'> Назад к списку товаров </a>
+                    <a href='/items/'> Назад к списку товаров </a>
                     """     
 
     else:
         response = f"""
                     <h1>Товар c id={item_id} не найден</h1>
-                    <a href='../'> Назад к списку товаров </a>
+                    <a href='/items/'> Назад к списку товаров </a>
                     """
     
     return HttpResponse(response)
