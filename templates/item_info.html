@@ -5,8 +5,19 @@
     <title>item_info</title>
 </head>
 <body>
+    <header>
+        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> /
+    </header>
+
+
     Наименование: {{ item.name }}<br>
-    Количество: {{ item.quantity }}<br>
+
+    {% if item.quantity == 0 %}
+        Товар отсутствует<br>
+    {% else %}
+        Количество: {{ item.quantity }}<br>
+    {% endif %}
+
     <a href='/items/'> Назад к списку товаров </a>
 </body>
 </html>

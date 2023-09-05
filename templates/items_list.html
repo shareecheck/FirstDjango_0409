@@ -5,6 +5,11 @@
     <title>item_list</title>
 </head>
 <body>
+    
+    <header>
+        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> /
+    </header>
+
     <ol>
         {% for item in items %}
             <li><a href='/item/{{item.id}}/'>{{ item.name }}</a></li>
