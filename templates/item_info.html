@@ -11,11 +11,12 @@
 
 
     Наименование: {{ item.name }}<br>
+    Бренд: {{ item.brand }}<br>
 
-    {% if item.quantity == 0 %}
+    {% if item.count == 0 %}
         Товар отсутствует<br>
     {% else %}
-        Количество: {{ item.quantity }}<br>
+        Количество: {{ item.count }}<br>
     {% endif %}
 
     <a href='/items/'> Назад к списку товаров </a>

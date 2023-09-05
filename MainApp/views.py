@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from MainApp.models import Item
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -33,7 +35,7 @@ def about(request):
 
 
 
-
+'''
 items = [
         {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
         {"id": 2, "name": "Куртка кожаная", "quantity": 2},
@@ -41,9 +43,10 @@ items = [
         {"id": 7, "name": "Картофель фри", "quantity": 0},
         {"id": 8, "name": "Кепка", "quantity": 124},
         ]
+'''
 
 def items_list(request):
-
+    items = Item.objects.all()
     context = {'items': items}
     return render(request, 'items_list.html', context)
 
@@ -60,13 +63,20 @@ def items_list(request):
 
 
 def item_info(request, item_id):
+    try:
+        item = Item.objects.get(id=item_id)
+        context = {'item': item}
+        return render(request, 'item_info.html', context)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f'Товар c id={item_id} нет на складе')
 
+    '''
     for item in items:
         if item["id"] == item_id:
             context = {'item': item}
             return render(request, 'item_info.html', context)
     return HttpResponseNotFound(f'Товар c id={item_id} не найден')
-
+    '''
     '''
     for item in items:
         if item["id"] == item_id:
