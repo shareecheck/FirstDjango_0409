@@ -68,7 +68,7 @@ def item_info(request, item_id):
         context = {'item': item}
         return render(request, 'item_info.html', context)
     except ObjectDoesNotExist:
-        return HttpResponseNotFound(f'Товар c id={item_id} нет на складе')
+        return HttpResponseNotFound(f'Товар c id={item_id} не найден')
 
     '''
     for item in items:

@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>item_list</title>
+    <style type='text/css'>
+        .brd{
+            border-style: double;
+            padding: 10px; /* Поля вокруг текста */
+            border-width: 3px;
+            display: inline;
+        }
+
+    </style>
+
+
+
 </head>
 <body>
     
     <header>
-        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> /
+        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> / <br><br>
     </header>
 
-    <ol>
+    
         {% for item in items %}
-            <li><a href='/item/{{item.id}}/'>{{ item.name }}</a></li>
+        <div class='brd'>
+            <a href='/item/{{item.id}}/'>{{ item.name }}</a>
+            {{ item.description }}        
+        </div>
+            
         {% endfor %}
-    </ol>
+    
 
 </body>
 </html>

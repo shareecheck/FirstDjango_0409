@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>item_info</title>
+
+
 </head>
 <body>
     <header>
@@ -12,12 +14,10 @@
 
     Наименование: {{ item.name }}<br>
     Бренд: {{ item.brand }}<br>
-
-    {% if item.count == 0 %}
-        Товар отсутствует<br>
-    {% else %}
-        Количество: {{ item.count }}<br>
-    {% endif %}
+ 
+    <div>
+        Количество: {{ item.count | default:'Товар отсутствует на складе'}}
+    </div>
 
     <a href='/items/'> Назад к списку товаров </a>
 </body>
