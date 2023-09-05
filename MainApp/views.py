@@ -1,13 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+
 
 # Create your views here.
 def home(request):
+    '''
     text = """
             <h1>"Изучаем django"</h1>
             <strong>Автор</strong>: <i>Иванов И.И.</i>
             """
     return HttpResponse(text)
+    '''
+    context = {
+        'name': 'Петров Иван Николаевич',
+        'email': 'petrovin@gmail.com',
+    }
+    return render(request, 'index.html', context)
 
 def about(request):
     text = """
@@ -33,6 +41,10 @@ items = [
 
 def items_list(request):
 
+    context = {'items': items}
+    return render(request, 'items_list.html', context)
+
+    '''
     response = "<h1>Список товаров:</h1>"
     response += "<ol>"
     for item in items:
@@ -40,11 +52,19 @@ def items_list(request):
     response += "</ol>"
     
     return HttpResponse(response)
+    '''
 
 
 
 def item_info(request, item_id):
-    
+
+    for item in items:
+        if item["id"] == item_id:
+            context = {'item': item}
+            return render(request, 'item_info.html', context)
+    return HttpResponseNotFound(f'Товар c id={item_id} не найден')
+
+    '''
     for item in items:
         if item["id"] == item_id:
             found_item = item
@@ -58,8 +78,7 @@ def item_info(request, item_id):
                     <p>Название: {found_item['name']}</p>
                     <p>Количество: {found_item['quantity']}</p>
                     <a href='/items/'> Назад к списку товаров </a>
-                    """     
-
+                    """ 
     else:
         response = f"""
                     <h1>Товар c id={item_id} не найден</h1>
@@ -67,9 +86,5 @@ def item_info(request, item_id):
                     """
     
     return HttpResponse(response)
-
-
-
-
-
+    '''
 
