@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block title %}
     <title>item_info</title>
+{% endblock %}
 
-
-</head>
-<body>
-    <header>
-        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> /
-    </header>
-
-
+{% block content %}
     Наименование: {{ item.name }}<br>
     Бренд: {{ item.brand }}<br>
- 
+
     <div>
         Количество: {{ item.count | default:'Товар отсутствует на складе'}}
     </div>
 
-    <a href='/items/'> Назад к списку товаров </a>
-</body>
-</html>
+    <a href={% url 'items_list'%}> Назад к списку товаров </a>
+{% endblock %}

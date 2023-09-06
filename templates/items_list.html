@@ -1,8 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block title %}
     <title>item_list</title>
+{% endblock %}
+
+{% block style %}
     <style type='text/css'>
         .brd{
             border-style: double;
@@ -10,27 +12,15 @@
             border-width: 3px;
             display: inline;
         }
-
     </style>
+{% endblock %}
 
+{% block content %}
+    {% for item in items %}
+    <div class='brd'>
+        <a href={% url 'item_info' item.id %}>{{ item.name }}</a>
+        {{ item.description }}        
+    </div> 
+    {% endfor %}
+{% endblock %}
 
-
-</head>
-<body>
-    
-    <header>
-        / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> / <br><br>
-    </header>
-
-    
-        {% for item in items %}
-        <div class='brd'>
-            <a href='/item/{{item.id}}/'>{{ item.name }}</a>
-            {{ item.description }}        
-        </div>
-            
-        {% endfor %}
-    
-
-</body>
-</html>
