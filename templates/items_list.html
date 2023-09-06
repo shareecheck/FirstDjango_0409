@@ -1,25 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    <title>item_list</title>
-{% endblock %}
+{% load static %}
 
 {% block style %}
-    <style type='text/css'>
-        .brd{
-            border-style: double;
-            padding: 10px; /* Поля вокруг текста */
-            border-width: 3px;
-            display: inline;
-        }
-    </style>
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
 {% endblock %}
 
 {% block content %}
     {% for item in items %}
     <div class='brd'>
-        <a href={% url 'item_info' item.id %}>{{ item.name }}</a>
-        {{ item.description }}        
+        <p><a href={% url 'item_info' item.id %}>{{ item.name }}</a></p>
+        <p>{{ item.description }}</p>
     </div> 
     {% endfor %}
 {% endblock %}

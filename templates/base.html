@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
+        <title> {{page_name | title}} </title>
     {% endblock %}
 
     {% block style %}
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-    
+
     {% include 'header.html' %}
 
     {% block content %}

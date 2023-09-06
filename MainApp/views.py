@@ -16,11 +16,13 @@ def home(request):
     context = {
         'name': 'Петров Иван Николаевич',
         'email': 'petrovin@gmail.com',
+        'page_name': 'home'
     }
     return render(request, 'index.html', context)
 
 def about(request):
     text = """
+            <title> About </title>
             <header>
                 / <a href='/'>Home</a> / <a href='/items/'>Items</a> / <a href='/about/'>About</a> /
             </header>
@@ -47,7 +49,8 @@ items = [
 
 def items_list(request):
     items = Item.objects.all()
-    context = {'items': items}
+    context = {'items': items,
+               'page_name': 'items_list'}
     return render(request, 'items_list.html', context)
 
     '''
@@ -65,7 +68,8 @@ def items_list(request):
 def item_info(request, item_id):
     try:
         item = Item.objects.get(id=item_id)
-        context = {'item': item}
+        context = {'item': item,
+                   'page_name': 'item_info'}
         return render(request, 'item_info.html', context)
     except ObjectDoesNotExist:
         return HttpResponseNotFound(f'Товар c id={item_id} не найден')

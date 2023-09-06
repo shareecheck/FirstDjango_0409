@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+    <style type='text/css'>
+        .brd{
+            border-style: double;
+            padding: 10px; /* Поля вокруг текста */
+            border-width: 3px;
+            display: inline;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% for item in items %}
+    <div class='brd'>
+        <a href={% url 'item_info' item.id %}>{{ item.name }}</a>
+        {{ item.description }}        
+    </div> 
+    {% endfor %}
+{% endblock %}
+
