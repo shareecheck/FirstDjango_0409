@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block style %}
+<style>
+    li span{
+        color: black;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
     Наименование: {{ item.name }}<br>
@@ -8,6 +15,19 @@
     <div>
         Количество: {{ item.count | default:'Товар отсутствует на складе'}}
     </div>
+
+    Возможные цвета:<br>
+    {% if not item_colors %}
+        Товар без цвета<br>
+    {% endif %}
+
+    {% for color in item_colors %}
+        <ul>
+            <li style='color: {{ color.name }}'>
+                <span>{{ color.name }}</span>
+            </li>
+        </ul> 
+    {% endfor %}
 
     <a href={% url 'items_list'%}> Назад к списку товаров </a>
 {% endblock %}

@@ -68,8 +68,10 @@ def items_list(request):
 def item_info(request, item_id):
     try:
         item = Item.objects.get(id=item_id)
+        item_colors = item.colors.all()
         context = {'item': item,
-                   'page_name': 'item_info'}
+                   'page_name': 'item_info',
+                   'item_colors': item_colors}
         return render(request, 'item_info.html', context)
     except ObjectDoesNotExist:
         return HttpResponseNotFound(f'Товар c id={item_id} не найден')
